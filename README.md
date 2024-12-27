@@ -1,6 +1,6 @@
-# scouting2024
+# Scout Client 2025
 
-Offseason scouting test.
+Scouting app for FRC 2025, created by Team 3197.
 
 ## Getting Started
 
