@@ -57,7 +57,7 @@ class TelePageState extends  State<TelePage> {
                       "Speaker Made: $teleSpeakerMadeCount",
                       style: CustomTextStyle.labelTextStyle,
                     ),
-                    createCounterWiget(Icons.speaker, Colors.green, incrementSpeakerMade, decrementSpeakerMade)
+                    createCounterWidget(Icons.speaker, Colors.green, incrementSpeakerMade, decrementSpeakerMade)
                   ])),
               Container(
                   margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
@@ -72,7 +72,7 @@ class TelePageState extends  State<TelePage> {
                       "Speaker Missed: $teleSpeakerMissedCount",
                       style: CustomTextStyle.labelTextStyle,
                     ),
-                    createCounterWiget(Icons.speaker, Colors.red, incrementSpeakerMissed, decrementSpeakerMissed)
+                    createCounterWidget(Icons.speaker, Colors.red, incrementSpeakerMissed, decrementSpeakerMissed)
                   ])),
             ],
           )),
@@ -92,7 +92,13 @@ class TelePageState extends  State<TelePage> {
             if (value == 0) {
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) {
-                    return const GeneralPage();
+                    return const AutoPage();
+                  }));
+            }
+            if (value == 1) {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) {
+                    return const EndgamePage();
                   }));
             }
           }),

@@ -13,7 +13,7 @@ class AutoPageState extends  State<AutoPage> {
     });
   }
 
-  void decrementSpeaker_Made() {
+  void decrementSpeakerMade() {
     setState(() {
       if (autoSpeakerMadeCount > 0) {
         autoSpeakerMadeCount--;
@@ -55,7 +55,7 @@ class AutoPageState extends  State<AutoPage> {
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          createSelectWiget("Starting Spot:", [
+          createSelectWidget("Starting Spot:", [
             'Center',
             'Amp',
             'Source',
@@ -73,7 +73,7 @@ class AutoPageState extends  State<AutoPage> {
                   "Speaker Made: $autoSpeakerMadeCount",
                   style: CustomTextStyle.labelTextStyle,
                 ),
-                createCounterWiget(Icons.speaker, Colors.green, incrementSpeakerMade, decrementSpeaker_Made)
+                createCounterWidget(Icons.speaker, Colors.green, incrementSpeakerMade, decrementSpeakerMade)
               ])),
       Container(
           margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
@@ -88,7 +88,7 @@ class AutoPageState extends  State<AutoPage> {
               "Speaker Missed: $autoSpeakerMissedCount",
               style: CustomTextStyle.labelTextStyle,
             ),
-            createCounterWiget(Icons.speaker, Colors.red, incrementSpeakerMissed, decrementSpeakerMissed)
+            createCounterWidget(Icons.speaker, Colors.red, incrementSpeakerMissed, decrementSpeakerMissed)
           ])),
         ],
       )),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:scouting2024/AutoPage.dart';
-import 'package:scouting2024/GeneralPage.dart';
-import 'package:scouting2024/TelePage.dart';
+import 'package:scouting2024/AutoPageState.dart';
+import 'package:scouting2024/EndgamePageState.dart';
+import 'package:scouting2024/GeneralPageState.dart';
+import 'package:scouting2024/TelePageState.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,6 +19,8 @@ String autoStartingPosition = "Center";
 
 int teleSpeakerMadeCount = 0;
 int teleSpeakerMissedCount = 0;
+
+bool climbed = false;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -65,10 +68,10 @@ class HomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<HomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => HomePageState();
 }
 
-class _MyHomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> {
   ThemeMode themeMode = ThemeMode.system;
 
   @override
@@ -127,12 +130,12 @@ class _MyHomePageState extends State<HomePage> {
                 style: ButtonStyle(
                   foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
                   backgroundColor:
-                      WidgetStateProperty.all<Color>(Colors.orange),
+                      WidgetStateProperty.all<Color>(const Color(0xFF453627)),
                   shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(2),
                           side: const BorderSide(
-                              color: Colors.deepOrangeAccent, width: 2))),
+                              color: Colors.orange, width: 4))),
                   padding: WidgetStateProperty.all<EdgeInsets>(
                       const EdgeInsets.symmetric(
                           vertical: 5.0, horizontal: 20.0)),
@@ -143,7 +146,12 @@ class _MyHomePageState extends State<HomePage> {
                     return const GeneralPage();
                   }));
                 },
-                child: const Text("New Match", style: TextStyle(fontSize: 36)))
+                child: const Text("New Match", style: TextStyle(fontSize: 36))),
+            const Text(
+              'Version: Test 1',
+              style: TextStyle(fontSize: 18, color: Colors.pink),
+              textAlign: TextAlign.center,
+            ),
           ],
         ),
       ),
@@ -170,4 +178,11 @@ class TelePage extends StatefulWidget {
 
   @override
   TelePageState createState() => TelePageState();
+}
+
+class EndgamePage extends StatefulWidget {
+  const EndgamePage({super.key});
+
+  @override
+  EndgamePageState createState() => EndgamePageState();
 }
