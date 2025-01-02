@@ -3,8 +3,7 @@ import 'package:scouting2024/CustomInputs.dart';
 import 'package:scouting2024/CustomStyles.dart';
 import 'package:scouting2024/main.dart';
 
-class AutoPageState extends  State<AutoPage> {
-
+class AutoPageState extends State<AutoPage> {
   final String title = "Auto Page";
 
   void incrementSpeakerMade() {
@@ -49,18 +48,26 @@ class AutoPageState extends  State<AutoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(
+          title,
+          style: const TextStyle(
+              fontSize: 30,
+              decoration: TextDecoration.underline,
+              decorationColor: Colors.orangeAccent,
+              decorationThickness: 1),
+        ),
       ),
-      body: Center(
-          child: Column(
+      body: SingleChildScrollView(
+          child: Center(
+              child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          createSelectWidget("Starting Spot:", [
-            'Center',
-            'Amp',
-            'Source',
-            'Weird'
-          ], setStartingSpot, getStartingSpot, context),
+          createSelectWidget(
+              "Starting Spot:",
+              ['Center', 'Amp', 'Source', 'Weird'],
+              setStartingSpot,
+              getStartingSpot,
+              context),
           Container(
               margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
               decoration: const BoxDecoration(
@@ -73,25 +80,26 @@ class AutoPageState extends  State<AutoPage> {
                   "Speaker Made: $autoSpeakerMadeCount",
                   style: CustomTextStyle.labelTextStyle,
                 ),
-                createCounterWidget(Icons.speaker, Colors.green, incrementSpeakerMade, decrementSpeakerMade)
+                createCounterWidget(Icons.speaker, Colors.green,
+                    incrementSpeakerMade, decrementSpeakerMade)
               ])),
-      Container(
-          margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
-          decoration: const BoxDecoration(
-            border: Border(
-              bottom: BorderSide(width: 5, color: Color(0xFF5e554d)),
-
-            ),
-          ),
-          child: Column(children: [
-            Text(
-              "Speaker Missed: $autoSpeakerMissedCount",
-              style: CustomTextStyle.labelTextStyle,
-            ),
-            createCounterWidget(Icons.speaker, Colors.red, incrementSpeakerMissed, decrementSpeakerMissed)
-          ])),
+          Container(
+              margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(width: 5, color: Color(0xFF5e554d)),
+                ),
+              ),
+              child: Column(children: [
+                Text(
+                  "Speaker Missed: $autoSpeakerMissedCount",
+                  style: CustomTextStyle.labelTextStyle,
+                ),
+                createCounterWidget(Icons.speaker, Colors.red,
+                    incrementSpeakerMissed, decrementSpeakerMissed)
+              ])),
         ],
-      )),
+      ))),
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           items: const [
@@ -114,8 +122,8 @@ class AutoPageState extends  State<AutoPage> {
             if (value == 1) {
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) {
-                    return const TelePage();
-                  }));
+                return const TelePage();
+              }));
             }
           }),
     );

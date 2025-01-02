@@ -40,8 +40,8 @@ Widget createSelectWidget(String label, List<String> items, Function setText,
                   width: MediaQuery.of(context).size.width / 2.5,
                   child: Text(label,
                       textAlign: TextAlign.end,
-                      style: const TextStyle(
-                          fontSize: 36, fontFamily: 'Slabo'))),
+                      style:
+                          const TextStyle(fontSize: 36, fontFamily: 'Slabo'))),
             ),
             SizedBox(
                 height: 57,
@@ -113,4 +113,37 @@ Widget createCheckboxWidget(
               child: Icon(checkIcon(getValue()), size: 40),
             )
           ])));
+}
+
+Widget createSliderWidget(String label, List<String> items, Function setValue,
+    Function getValue, double max, BuildContext context) {
+  return Container(
+    margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+    child: Row(
+        children: [
+      SizedBox(
+          width: MediaQuery.of(context).size.width / 2.1,
+          child: Column(children: [
+            Text(label,
+                textAlign: TextAlign.end,
+                style: const TextStyle(fontSize: 36, fontFamily: 'Slabo')),
+            Text(items[getValue().round()-1],
+                textAlign: TextAlign.end,
+                style: const TextStyle(fontSize: 20, fontFamily: 'Slabo', color: Colors.orangeAccent))
+          ])),
+      SizedBox(
+        width: MediaQuery.of(context).size.width / 2.1,
+        child: Slider(
+          value: getValue(),
+          max: max,
+          min: 1,
+          divisions: max.toInt() - 1,
+          label: getValue().round().toString(),
+          onChanged: (double value) {
+            setValue(value);
+          },
+        ),
+      )
+    ]),
+  );
 }

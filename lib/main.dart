@@ -1,7 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:scouting2024/AutoPageState.dart';
+import 'package:scouting2024/ConclusionPageState.dart';
 import 'package:scouting2024/EndgamePageState.dart';
 import 'package:scouting2024/GeneralPageState.dart';
+import 'package:scouting2024/SubmissionPageState.dart';
 import 'package:scouting2024/TelePageState.dart';
 
 void main() {
@@ -21,6 +25,19 @@ int teleSpeakerMadeCount = 0;
 int teleSpeakerMissedCount = 0;
 
 bool climbed = false;
+
+double driverSkillRating = 3;
+double intakeSpeedRating = 2;
+double cycleSpeedRating = 2;
+String commentText = "No comment :(";
+bool imageVisible = false;
+bool submissionDone = false;
+bool submissionFail = false;
+
+int money = 0;
+var tier = 0;
+var randomGenerator = Random();
+String imageName = '';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -45,6 +62,7 @@ class MyApp extends StatelessWidget {
           onSecondary: Colors.black,
           onSurface: Colors.white,
           brightness: Brightness.dark,
+          tertiary: Color(0xFF00D586)
         ),
         useMaterial3: true,
       ),
@@ -109,18 +127,18 @@ class HomePageState extends State<HomePage> {
           // action in the IDE, or press "p" in the console), to see the
           // wireframe for each widget.
           children: <Widget>[
-            const Column(children: [
+            Column(children: [
               Text(
                 'HexHound Scouting',
                 style: TextStyle(
                     fontSize: 50,
                     fontFamily: 'Branding',
                     decoration: TextDecoration.underline,
-                    decorationColor: Color(0xFF00D586),
+                    decorationColor: Theme.of(context).colorScheme.tertiary,
                     decorationThickness: 5),
                 textAlign: TextAlign.center,
               ),
-              Text(
+              const Text(
                 '*Test* version of scouting app.',
                 style: TextStyle(fontSize: 18),
                 textAlign: TextAlign.center,
@@ -185,4 +203,18 @@ class EndgamePage extends StatefulWidget {
 
   @override
   EndgamePageState createState() => EndgamePageState();
+}
+
+class ConclusionPage extends StatefulWidget {
+  const ConclusionPage({super.key});
+
+  @override
+  ConclusionPageState createState() => ConclusionPageState();
+}
+
+class SubmissionPage extends StatefulWidget {
+  const SubmissionPage({super.key});
+
+  @override
+  SubmissionPageState createState() => SubmissionPageState();
 }

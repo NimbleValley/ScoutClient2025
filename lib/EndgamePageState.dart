@@ -20,15 +20,23 @@ class EndgamePageState extends State<EndgamePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(
+          title,
+          style: const TextStyle(
+              fontSize: 30,
+              decoration: TextDecoration.underline,
+              decorationColor: Colors.orangeAccent,
+              decorationThickness: 1),
+        ),
       ),
-      body: Center(
-          child: Column(
+      body: SingleChildScrollView(
+          child: Center(
+              child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           createCheckboxWidget('Climbed:', setClimbed, getClimbed, context)
         ],
-      )),
+      ))),
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           items: const [
@@ -51,7 +59,7 @@ class EndgamePageState extends State<EndgamePage> {
             if (value == 1) {
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) {
-                return const TelePage();
+                return const ConclusionPage();
               }));
             }
           }),

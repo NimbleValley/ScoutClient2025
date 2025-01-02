@@ -3,8 +3,7 @@ import 'package:scouting2024/CustomInputs.dart';
 import 'package:scouting2024/CustomStyles.dart';
 import 'package:scouting2024/main.dart';
 
-class TelePageState extends  State<TelePage> {
-
+class TelePageState extends State<TelePage> {
   final String title = "Tele Page";
 
   void incrementSpeakerMade() {
@@ -39,43 +38,52 @@ class TelePageState extends  State<TelePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(
+          title,
+          style: const TextStyle(
+              fontSize: 30,
+              decoration: TextDecoration.underline,
+              decorationColor: Colors.orangeAccent,
+              decorationThickness: 1),
+        ),
       ),
-      body: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                  margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(width: 5, color: Color(0xFF5e554d)),
-                    ),
-                  ),
-                  child: Column(children: [
-                    Text(
-                      "Speaker Made: $teleSpeakerMadeCount",
-                      style: CustomTextStyle.labelTextStyle,
-                    ),
-                    createCounterWidget(Icons.speaker, Colors.green, incrementSpeakerMade, decrementSpeakerMade)
-                  ])),
-              Container(
-                  margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(width: 5, color: Color(0xFF5e554d)),
-
-                    ),
-                  ),
-                  child: Column(children: [
-                    Text(
-                      "Speaker Missed: $teleSpeakerMissedCount",
-                      style: CustomTextStyle.labelTextStyle,
-                    ),
-                    createCounterWidget(Icons.speaker, Colors.red, incrementSpeakerMissed, decrementSpeakerMissed)
-                  ])),
-            ],
-          )),
+      body: SingleChildScrollView(
+          child: Center(
+              child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+              margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(width: 5, color: Color(0xFF5e554d)),
+                ),
+              ),
+              child: Column(children: [
+                Text(
+                  "Speaker Made: $teleSpeakerMadeCount",
+                  style: CustomTextStyle.labelTextStyle,
+                ),
+                createCounterWidget(Icons.speaker, Colors.green,
+                    incrementSpeakerMade, decrementSpeakerMade)
+              ])),
+          Container(
+              margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(width: 5, color: Color(0xFF5e554d)),
+                ),
+              ),
+              child: Column(children: [
+                Text(
+                  "Speaker Missed: $teleSpeakerMissedCount",
+                  style: CustomTextStyle.labelTextStyle,
+                ),
+                createCounterWidget(Icons.speaker, Colors.red,
+                    incrementSpeakerMissed, decrementSpeakerMissed)
+              ])),
+        ],
+      ))),
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           items: const [
@@ -92,14 +100,14 @@ class TelePageState extends  State<TelePage> {
             if (value == 0) {
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) {
-                    return const AutoPage();
-                  }));
+                return const AutoPage();
+              }));
             }
             if (value == 1) {
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) {
-                    return const EndgamePage();
-                  }));
+                return const EndgamePage();
+              }));
             }
           }),
     );

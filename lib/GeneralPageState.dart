@@ -35,9 +35,17 @@ class GeneralPageState extends State<GeneralPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('General Information'),
+        title: const Text(
+          'General Information',
+          style: TextStyle(
+              fontSize: 30,
+              decoration: TextDecoration.underline,
+              decorationColor: Colors.orangeAccent,
+              decorationThickness: 1),
+        ),
       ),
-      body: Center(
+      body: SingleChildScrollView(
+          child: Center(
         child: Column(children: [
           SizedBox(
               width: MediaQuery.of(context).size.width * 1,
@@ -164,7 +172,7 @@ class GeneralPageState extends State<GeneralPage> {
             child: const Text('Go Back'),
           ),
         ]),
-      ),
+      )),
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           items: const [
