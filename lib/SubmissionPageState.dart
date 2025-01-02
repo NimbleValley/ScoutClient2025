@@ -6,7 +6,6 @@ import 'package:scouting2024/main.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:dio/dio.dart';
-import 'dart:convert';
 
 class SubmissionPageState extends State<SubmissionPage> {
   var commonImages = [
@@ -53,6 +52,8 @@ class SubmissionPageState extends State<SubmissionPage> {
   ];
   var legendaryImages = ['gabefoot.jpg', 'benjifoot.jpg', 'sherrilbig.jpg'];
 
+  var outputCode = 'no_output_code';
+
   void postData() async {
     final map = <String, dynamic>{};
     map['Name'] = nameValue.toString();
@@ -76,7 +77,7 @@ class SubmissionPageState extends State<SubmissionPage> {
 
     var dio = Dio();
     try {
-      FormData formData = new FormData.fromMap(map);
+      FormData formData = FormData.fromMap(map);
       var response = await dio
           .post(
               'https://script.google.com/macros/s/AKfycbzyACkTcrn0xFkrnhyMrE3Q9mLRHpqZ8MUWWGPzrqIDhEfGQROLUjYJRvtIuVAYDRbG/exec',
@@ -85,14 +86,24 @@ class SubmissionPageState extends State<SubmissionPage> {
       setState(() {
         submissionDone = true;
       });
-      return response.data;
+      return;
+      //return response.data;
     } on TimeoutException {
       setState(() {
+        outputCode = 'POST timed out, try again or reconnect';
         submissionDone = true;
         submissionFail = true;
       });
-    } catch (e) {
+    } on DioException catch (e) {
       setState(() {
+        if(e.type == DioExceptionType.badResponse) {
+          showAlertDialog(context, "Bad response, but data should be submitted correctly. Carry on.");
+          submissionDone = true;
+          submissionFail = false;
+          return;
+        }
+
+        outputCode = e.toString();
         submissionDone = true;
         submissionFail = true;
       });
@@ -237,6 +248,10 @@ class SubmissionPageState extends State<SubmissionPage> {
             type: BottomNavigationBarType.fixed,
             items: const [
               BottomNavigationBarItem(
+                icon: Icon(Icons.info_outline),
+                label: 'Error Info',
+              ),
+              BottomNavigationBarItem(
                 icon: Icon(Icons.redo),
                 label: 'Try Resubmission',
               ),
@@ -252,12 +267,28 @@ class SubmissionPageState extends State<SubmissionPage> {
             onTap: (value) {
               if (value == 0) {
                 setState(() {
+                  showAlertDialog(context, outputCode);
+                });
+              }
+              if (value == 1) {
+                setState(() {
                   submissionDone = false;
                   submissionFail = false;
                   postData();
                 });
               }
               if (value == 2) {
+                setState(() {
+                 // submissionDone = true;
+                  //submissionFail = false;
+
+                  //Navigator.pushReplacement(context,
+                      //MaterialPageRoute(builder: (context) {
+                    //return const HomePage(title: 'Test Version 2024 Scouting');
+                  //}));
+                });
+              }
+              if (value == 3) {
                 resetForm();
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) {
@@ -302,7 +333,7 @@ class SubmissionPageState extends State<SubmissionPage> {
   }
 
   getImage() {
-    if(imageName != "") {
+    if (imageName != "") {
       return 'images/$imageName';
     }
 
@@ -355,4 +386,31 @@ void resetForm() {
   submissionFail = false;
 
   imageName = '';
+}
+
+showAlertDialog(BuildContext context, String output) {
+  // set up the button
+  Widget okButton = TextButton(
+    child: const Text("Ok."),
+    onPressed: () {
+      Navigator.pop(context);
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: const Text("Error Code:"),
+    content: Text(output),
+    actions: [
+      okButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }

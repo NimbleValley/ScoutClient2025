@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:scouting2024/CustomInputs.dart';
-import 'package:scouting2024/CustomStyles.dart';
 import 'package:scouting2024/main.dart';
 
 class EndgamePageState extends State<EndgamePage> {

@@ -98,7 +98,7 @@ class ConclusionPageState extends State<ConclusionPage> {
                 style: ButtonStyle(
                   foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
                   backgroundColor:
-                  WidgetStateProperty.all<Color>(const Color(0xFF453627)),
+                      WidgetStateProperty.all<Color>(const Color(0xFF453627)),
                   shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(2),
@@ -111,8 +111,8 @@ class ConclusionPageState extends State<ConclusionPage> {
                 onPressed: () {
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) {
-                        return const SubmissionPage();
-                      }));
+                    return const SubmissionPage();
+                  }));
                 },
                 child: const Text("Submit", style: TextStyle(fontSize: 36))),
           )
