@@ -47,32 +47,33 @@ class GeneralPageState extends State<GeneralPage> {
       body: SingleChildScrollView(
           child: Center(
         child: Column(children: [
-          SizedBox(
-              width: MediaQuery.of(context).size.width * 1,
-              height: 100,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+          Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Column(
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 3,
+                      child: const Padding(
+                        padding: EdgeInsets.only(bottom: 21.0, right: 10.0),
+                        child: Text('Match #:',
+                            textAlign: TextAlign.end,
+                            style: TextStyle(fontSize: 36, fontFamily: 'Slabo')),
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(right: 25, top: 10),
+                      padding: const EdgeInsets.only(left: 10.0),
                       child: SizedBox(
-                          height: 100,
-                          width: MediaQuery.of(context).size.width / 2.5,
-                          child: const Text('Match #:',
-                              textAlign: TextAlign.end,
-                              style: TextStyle(
-                                  fontSize: 36, fontFamily: 'Slabo'))),
-                    ),
-                    SizedBox(
-                        height: 100,
-                        width: MediaQuery.of(context).size.width / 2.8,
+                        width: MediaQuery.of(context).size.width / 3,
                         child: TextField(
                             onChanged: (value) {
-                              setState(() {
-                                matchValue = value;
-                              });
                               //Do something with the user input.
+                              matchValue = value;
                             },
                             keyboardType: TextInputType.number,
                             inputFormatters: <TextInputFormatter>[
@@ -83,8 +84,12 @@ class GeneralPageState extends State<GeneralPage> {
                             style: const TextStyle(
                                 fontSize: 40.0, color: Colors.orangeAccent),
                             decoration: CustomTextInputDecoration
-                                .createCustomInputDecoration('eg. 17')))
-                  ])),
+                                .createCustomInputDecoration('eg. 77')),
+                      ),
+                    )
+                  ],
+                )
+              ]),
           createSelectWidget(
               "Alliance:",
               ['Blue 1', 'Blue 2', 'Blue 3', 'Red 1', 'Red 2', 'Red 3'],
@@ -93,26 +98,29 @@ class GeneralPageState extends State<GeneralPage> {
               context),
           // ------------------------------------------------------------------------------------------------------
           // Team Number:
-          SizedBox(
-              width: MediaQuery.of(context).size.width * 1,
-              height: 100,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+          Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Column(
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 3,
+                      child: const Padding(
+                        padding: EdgeInsets.only(bottom: 21.0, right: 10.0),
+                        child: Text('Team #:',
+                            textAlign: TextAlign.end,
+                            style: TextStyle(fontSize: 36, fontFamily: 'Slabo')),
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(right: 25, top: 10),
+                      padding: const EdgeInsets.only(left: 10.0),
                       child: SizedBox(
-                          height: 100,
-                          width: MediaQuery.of(context).size.width / 2.5,
-                          child: const Text('Team #:',
-                              textAlign: TextAlign.end,
-                              style: TextStyle(
-                                  fontSize: 36, fontFamily: 'Slabo'))),
-                    ),
-                    SizedBox(
-                        height: 100,
-                        width: MediaQuery.of(context).size.width / 2.8,
+                        width: MediaQuery.of(context).size.width / 3,
                         child: TextField(
                             onChanged: (value) {
                               //Do something with the user input.
@@ -127,41 +135,50 @@ class GeneralPageState extends State<GeneralPage> {
                             style: const TextStyle(
                                 fontSize: 40.0, color: Colors.orangeAccent),
                             decoration: CustomTextInputDecoration
-                                .createCustomInputDecoration('eg. 3197')))
-                  ])),
-          SizedBox(
-              width: MediaQuery.of(context).size.width * 1,
-              height: 100,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                                .createCustomInputDecoration('eg. 3197')),
+                      ),
+                    )
+                  ],
+                )
+              ]),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Column(
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 3,
+                      child: const Padding(
+                        padding: EdgeInsets.only(bottom: 21.0, right: 10.0),
+                        child: Text('Name:',
+                            textAlign: TextAlign.end,
+                            style: TextStyle(fontSize: 36, fontFamily: 'Slabo')),
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(right: 25, top: 10),
+                      padding: const EdgeInsets.only(left: 10.0),
                       child: SizedBox(
-                          height: 100,
-                          width: MediaQuery.of(context).size.width / 2.5,
-                          child: const Text('Name:',
-                              textAlign: TextAlign.end,
-                              style: TextStyle(
-                                  fontSize: 36, fontFamily: 'Slabo'))),
-                    ),
-                    SizedBox(
-                        height: 100,
-                        width: MediaQuery.of(context).size.width / 2.8,
+                        width: MediaQuery.of(context).size.width / 3,
                         child: TextField(
                             onChanged: (value) {
                               //Do something with the user input.
-                              CustomTextInputDecoration
-                                  .createCustomInputDecoration('eg. Hendrick');
                               nameValue = value;
                             },
                             controller: nameTextController,
                             style: const TextStyle(
                                 fontSize: 40.0, color: Colors.orangeAccent),
                             decoration: CustomTextInputDecoration
-                                .createCustomInputDecoration('eg. Hendrick')))
-                  ])),
+                                .createCustomInputDecoration('eg. Hendrick')),
+                      ),
+                    )
+                  ],
+                )
+              ]),
           TextButton(
             onPressed: () {
               Navigator.pushReplacement(context,

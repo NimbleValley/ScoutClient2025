@@ -34,10 +34,10 @@ Widget createSelectWidget(String label, List<String> items, Function setText,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(right: 25, top: 10),
+              padding: const EdgeInsets.only(right: 10, top: 10),
               child: SizedBox(
                   height: 100,
-                  width: MediaQuery.of(context).size.width / 2.5,
+                  width: MediaQuery.of(context).size.width / 3,
                   child: Text(label,
                       textAlign: TextAlign.end,
                       style:
@@ -45,7 +45,7 @@ Widget createSelectWidget(String label, List<String> items, Function setText,
             ),
             SizedBox(
                 height: 57,
-                width: MediaQuery.of(context).size.width / 2.8,
+                width: MediaQuery.of(context).size.width / 3,
                 child: ButtonTheme(
                     alignedDropdown: true,
                     child: DropdownButton<String>(
