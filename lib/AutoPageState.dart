@@ -6,30 +6,71 @@ import 'package:scouting2024/main.dart';
 class AutoPageState extends State<AutoPage> {
   final String title = "Auto Page";
 
-  void incrementSpeakerMade() {
+  void changeAutoL4(int value) {
     setState(() {
-      autoSpeakerMadeCount++;
-    });
-  }
-
-  void decrementSpeakerMade() {
-    setState(() {
-      if (autoSpeakerMadeCount > 0) {
-        autoSpeakerMadeCount--;
+      if (autoL4 + value >= 0) {
+        autoL4 += value;
+        autoCoral += value;
       }
     });
   }
 
-  void incrementSpeakerMissed() {
+  void changeAutoL3(int value) {
     setState(() {
-      autoSpeakerMissedCount++;
+      if (autoL3 + value >= 0) {
+        autoL3 += value;
+        autoCoral += value;
+      }
     });
   }
 
-  void decrementSpeakerMissed() {
+  void changeAutoL2(int value) {
     setState(() {
-      if (autoSpeakerMissedCount > 0) {
-        autoSpeakerMissedCount--;
+      if (autoL2 + value >= 0) {
+        autoL2 += value;
+        autoCoral += value;
+      }
+    });
+  }
+
+  void changeAutoL1(int value) {
+    setState(() {
+      if (autoL1 + value >= 0) {
+        autoL1 += value;
+        autoCoral += value;
+      }
+    });
+  }
+
+  void changeAutoMiss(int value) {
+    setState(() {
+      if (autoMiss + value >= 0) {
+        autoCoral += value;
+        autoMiss += value;
+      }
+    });
+  }
+
+  void changeAutoProcessor(int value) {
+    setState(() {
+      if (autoProcessor + value >= 0) {
+        autoProcessor += value;
+      }
+    });
+  }
+
+  void changeAutoNet(int value) {
+    setState(() {
+      if (autoNet + value >= 0) {
+        autoNet += value;
+      }
+    });
+  }
+
+  void changeAutoAlgaeRemoved(int value) {
+    setState(() {
+      if (autoAlgaeRemoved + value >= 0) {
+        autoAlgaeRemoved += value;
       }
     });
   }
@@ -42,6 +83,16 @@ class AutoPageState extends State<AutoPage> {
 
   String getStartingSpot() {
     return autoStartingPosition;
+  }
+
+  void setLeave(bool value) {
+    setState(() {
+      autoLeave = value;
+    });
+  }
+
+  bool getLeave() {
+    return autoLeave;
   }
 
   @override
@@ -68,35 +119,198 @@ class AutoPageState extends State<AutoPage> {
               setStartingSpot,
               getStartingSpot,
               context),
+              createCheckboxWidget('Left?', setLeave, getLeave, context),
           Container(
-              margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+              padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
               decoration: const BoxDecoration(
                 border: Border(
-                  bottom: BorderSide(width: 5, color: Color(0xFF5e554d)),
+                  bottom: BorderSide(width: 2.5, color: Color(0xFF5e554d)),
                 ),
               ),
               child: Column(children: [
-                Text(
-                  "Speaker Made: $autoSpeakerMadeCount",
-                  style: CustomTextStyle.labelTextStyle,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "L-four:   ",
+                      style: CustomTextStyle.labelTextStyleUnbold,
+                    ),
+                    Text(
+                      "$autoL4",
+                      style: CustomTextStyle.labelTextStyle,
+                    ),
+                  ],
                 ),
-                createCounterWidget(Icons.speaker, Colors.green,
-                    incrementSpeakerMade, decrementSpeakerMade)
+                createCounterWidget(
+                    Icons.network_wifi, Colors.deepPurpleAccent, changeAutoL4)
               ])),
           Container(
-              margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+              padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
               decoration: const BoxDecoration(
                 border: Border(
-                  bottom: BorderSide(width: 5, color: Color(0xFF5e554d)),
+                  bottom: BorderSide(width: 2.5, color: Color(0xFF5e554d)),
                 ),
               ),
               child: Column(children: [
-                Text(
-                  "Speaker Missed: $autoSpeakerMissedCount",
-                  style: CustomTextStyle.labelTextStyle,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "L-three:   ",
+                      style: CustomTextStyle.labelTextStyleUnbold,
+                    ),
+                    Text(
+                      "$autoL3",
+                      style: CustomTextStyle.labelTextStyle,
+                    ),
+                  ],
                 ),
-                createCounterWidget(Icons.speaker, Colors.red,
-                    incrementSpeakerMissed, decrementSpeakerMissed)
+                createCounterWidget(Icons.network_wifi_3_bar,
+                    Colors.deepPurpleAccent, changeAutoL3)
+              ])),
+          Container(
+              padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(width: 2.5, color: Color(0xFF5e554d)),
+                ),
+              ),
+              child: Column(children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "L-two:   ",
+                      style: CustomTextStyle.labelTextStyleUnbold,
+                    ),
+                    Text(
+                      "$autoL2",
+                      style: CustomTextStyle.labelTextStyle,
+                    ),
+                  ],
+                ),
+                createCounterWidget(Icons.network_wifi_2_bar,
+                    Colors.deepPurpleAccent, changeAutoL2)
+              ])),
+          Container(
+              padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(width: 2.5, color: Color(0xFF5e554d)),
+                ),
+              ),
+              child: Column(children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "L-one:   ",
+                      style: CustomTextStyle.labelTextStyleUnbold,
+                    ),
+                    Text(
+                      "$autoL1",
+                      style: CustomTextStyle.labelTextStyle,
+                    ),
+                  ],
+                ),
+                createCounterWidget(Icons.network_wifi_1_bar,
+                    Colors.deepPurpleAccent, changeAutoL1)
+              ])),
+          Container(
+              padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(width: 2.5, color: Color(0xFF5e554d)),
+                ),
+              ),
+              child: Column(children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Missed auto coral:   ",
+                      style: CustomTextStyle.labelTextStyleUnbold,
+                    ),
+                    Text(
+                      "$autoMiss",
+                      style: CustomTextStyle.labelTextStyle,
+                    ),
+                  ],
+                ),
+                createCounterWidget(
+                    Icons.error_outline, Colors.red, changeAutoMiss)
+              ])),
+          Container(
+              padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(width: 2.5, color: Color(0xFF5e554d)),
+                ),
+              ),
+              child: Column(children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Processor:   ",
+                      style: CustomTextStyle.labelTextStyleUnbold,
+                    ),
+                    Text(
+                      "$autoProcessor",
+                      style: CustomTextStyle.labelTextStyle,
+                    ),
+                  ],
+                ),
+                createCounterWidget(
+                    Icons.lens_blur, Colors.lightGreen, changeAutoProcessor)
+              ])),
+          Container(
+              padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(width: 2.5, color: Color(0xFF5e554d)),
+                ),
+              ),
+              child: Column(children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Net:   ",
+                      style: CustomTextStyle.labelTextStyleUnbold,
+                    ),
+                    Text(
+                      "$autoNet",
+                      style: CustomTextStyle.labelTextStyle,
+                    ),
+                  ],
+                ),
+                createCounterWidget(
+                    Icons.directions_boat, Colors.blueAccent, changeAutoNet)
+              ])),
+          Container(
+              padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(width: 2.5, color: Color(0xFF5e554d)),
+                ),
+              ),
+              child: Column(children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Algae removed:   ",
+                      style: CustomTextStyle.labelTextStyleUnbold,
+                    ),
+                    Text(
+                      "$autoAlgaeRemoved",
+                      style: CustomTextStyle.labelTextStyle,
+                    ),
+                  ],
+                ),
+                createCounterWidget(
+                    Icons.cancel_outlined, Colors.lightGreen, changeAutoAlgaeRemoved)
               ])),
         ],
       ))),

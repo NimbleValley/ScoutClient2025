@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 
 class CustomTextStyle {
   static TextStyle labelTextStyle = const TextStyle(
-    fontSize: 40,
+    fontSize: 45,
     color: Colors.white,
     fontWeight: FontWeight.bold,
+  );
+
+  static TextStyle labelTextStyleUnbold = const TextStyle(
+    fontSize: 35,
+    color: Colors.grey,
+    fontWeight: FontWeight.normal,
   );
 }
 

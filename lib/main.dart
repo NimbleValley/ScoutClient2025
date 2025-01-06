@@ -21,15 +21,42 @@ int autoSpeakerMadeCount = 0;
 int autoSpeakerMissedCount = 0;
 String autoStartingPosition = "Center";
 
-int teleSpeakerMadeCount = 0;
-int teleSpeakerMissedCount = 0;
+int autoL4 = 0;
+int autoL3 = 0;
+int autoL2 = 0;
+int autoL1 = 0;
+int autoCoral = 0;
+int autoMiss = 0;
+int autoNet = 0;
+int autoProcessor = 0;
+int autoAlgaeRemoved = 0;
+bool autoLeave = false;
 
-bool climbed = false;
+int teleL4 = 0;
+int teleL3 = 0;
+int teleL2 = 0;
+int teleL1 = 0;
+int teleCoral = 0;
+int teleMiss = 0;
+int teleNet = 0;
+int teleProcessor = 0;
+int teleAlgaeRemoved = 0;
+
+bool shallowClimb = false;
+bool deepClimb = false;
+bool park = false;
+
+int totalNet = 0;
+int totalProcessor = 0;
+int totalAlgae = 0;
+int totalCoral = 0;
 
 double driverSkillRating = 3;
 double intakeSpeedRating = 2;
 double cycleSpeedRating = 2;
+String humanPlayerNotes = "No comment :(";
 String commentText = "No comment :(";
+
 bool imageVisible = false;
 bool submissionDone = false;
 bool submissionFail = false;
@@ -62,11 +89,11 @@ class MyApp extends StatelessWidget {
           onSecondary: Colors.black,
           onSurface: Colors.white,
           brightness: Brightness.dark,
-          tertiary: Color(0xFF00D586)
+          tertiary: Color(0xFF29BDEC)
         ),
         useMaterial3: true,
       ),
-      home: const HomePage(title: 'Test Version 2024 Scouting'),
+      home: const HomePage(title: 'Test Version 2025 Scouting'),
     );
   }
 }
@@ -166,7 +193,7 @@ class HomePageState extends State<HomePage> {
                 },
                 child: const Text("New Match", style: TextStyle(fontSize: 36))),
             const Text(
-              'Version: Test 1',
+              'Version: 2025-1',
               style: TextStyle(fontSize: 18, color: Colors.pink),
               textAlign: TextAlign.center,
             ),

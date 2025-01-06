@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
 
-Widget createCounterWidget(IconData icon, Color color, VoidCallback increment,
-    VoidCallback decrement) {
+Widget createCounterWidget(IconData icon, Color color, Function change) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       IconButton(
         icon: const Icon(Icons.remove),
-        onPressed: decrement,
+        onPressed: () {
+          change(-1);
+        },
         iconSize: 75,
       ),
       Icon(
-        Icons.speaker,
+        icon,
         color: color,
         size: 75,
       ),
       IconButton(
         icon: const Icon(Icons.add),
-        onPressed: increment,
+        onPressed: () {
+          change(1);
+        },
         iconSize: 75,
       ),
     ],

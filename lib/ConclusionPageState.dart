@@ -7,10 +7,14 @@ class ConclusionPageState extends State<ConclusionPage> {
   final String title = "Conclusion Page";
 
   var commentTextController = TextEditingController();
+  var humanPlayerTextController = TextEditingController();
 
   ConclusionPageState() {
     if (commentText != 'No comment :(') {
       commentTextController.text = commentText;
+    }
+    if (humanPlayerNotes != 'No comment :(') {
+      humanPlayerTextController.text = humanPlayerNotes;
     }
   }
 
@@ -79,8 +83,30 @@ class ConclusionPageState extends State<ConclusionPage> {
                             const TextStyle(fontSize: 20, color: Colors.white),
                         decoration: CustomTextInputDecoration
                             .createCustomInputDecoration(
-                                'Please write a helpful comment...')))
+                                'Please write a helpful comment on the ROBOT...')))
               ]),
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                      width: MediaQuery.of(context).size.width / 1.25,
+                      child: TextField(
+                          onChanged: (value) {
+                            //Do something with the user input.
+                            humanPlayerNotes = value;
+                          },
+                          maxLines: 2,
+                          controller: humanPlayerTextController,
+                          style:
+                          const TextStyle(fontSize: 20, color: Colors.white),
+                          decoration: CustomTextInputDecoration
+                              .createCustomInputDecoration(
+                              'How were the drivers/human player?')))
+                ]),
+          ),
           createSliderWidget(
               "Driver Skill:",
               ['Awful', 'Clunky', 'Alright', 'Good', 'Excellent'],

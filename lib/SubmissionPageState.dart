@@ -61,19 +61,42 @@ class SubmissionPageState extends State<SubmissionPage> {
     map['Alliance'] = allianceValue.toString();
     map['Match Number'] = matchValue.toString();
 
-    map['Auto Speaker Made'] = autoSpeakerMadeCount.toString();
-    map['Auto Speaker Missed'] = autoSpeakerMissedCount.toString();
-    map['Starting Spot'] = autoStartingPosition.toString();
+    map['Auto Position'] = autoStartingPosition.toString();
+    map['Auto L4'] = autoL4.toString();
+    map['Auto L3'] = autoL3.toString();
+    map['Auto L2'] = autoL2.toString();
+    map['Auto L1'] = autoL1.toString();
+    map['Auto Coral'] = autoCoral.toString();
+    map['Auto Miss'] = autoMiss.toString();
+    map['Auto Processor'] = autoProcessor.toString();
+    map['Auto Net'] = autoNet.toString();
+    map['Auto Algae Removed'] = autoAlgaeRemoved.toString();
+    map['Auto Leave'] = autoLeave ? 'Yes' : 'No';
 
-    map['Tele Speaker Made'] = teleSpeakerMadeCount.toString();
-    map['Tele Speaker Missed'] = teleSpeakerMissedCount.toString();
+    map['Tele L4'] = teleL4.toString();
+    map['Tele L3'] = teleL3.toString();
+    map['Tele L2'] = teleL2.toString();
+    map['Tele L1'] = teleL1.toString();
+    map['Tele Coral'] = teleCoral.toString();
+    map['Tele Miss'] = teleMiss.toString();
+    map['Tele Processor'] = teleProcessor.toString();
+    map['Tele Net'] = teleNet.toString();
+    map['Tele Algae Removed'] = teleAlgaeRemoved.toString();
 
-    map['Climbed'] = climbed ? "Yes" : "No";
+    map['Shallow Climb'] = shallowClimb ? 'Yes' : 'No';
+    map['Deep Climb'] = deepClimb ? 'Yes' : 'No';
+    map['Park'] = park ? 'Yes' : 'No';
 
-    map['Comments'] = commentText.toString();
+    map['Total Net'] = (autoNet + teleNet).toString();
+    map['Total Processor'] = (autoProcessor + teleProcessor).toString();
+    map['Total Algae Removed'] = (autoAlgaeRemoved + teleAlgaeRemoved).toString();
+    map['Total Coral'] = (autoL1 + autoL2 + autoL3 + autoL4 + teleL1 + teleL2 + teleL3 + teleL4).toString();
+
     map['Driver Rating'] = driverSkillRating.toString();
     map['Intake Rating'] = intakeSpeedRating.toString();
     map['Cycle Rating'] = cycleSpeedRating.toString();
+    map['Human Player Notes'] = humanPlayerNotes.toString();
+    map['Comments'] = commentText.toString();
 
     var dio = Dio();
     try {
@@ -96,8 +119,9 @@ class SubmissionPageState extends State<SubmissionPage> {
       });
     } on DioException catch (e) {
       setState(() {
-        if(e.type == DioExceptionType.badResponse) {
-          showAlertDialog(context, "Bad response, but data should be submitted correctly. Carry on.");
+        if (e.type == DioExceptionType.badResponse) {
+          showAlertDialog(context,
+              "Bad response, but data should be submitted correctly. Carry on.");
           submissionDone = true;
           submissionFail = false;
           return;
@@ -279,12 +303,12 @@ class SubmissionPageState extends State<SubmissionPage> {
               }
               if (value == 2) {
                 setState(() {
-                 // submissionDone = true;
+                  // submissionDone = true;
                   //submissionFail = false;
 
                   //Navigator.pushReplacement(context,
-                      //MaterialPageRoute(builder: (context) {
-                    //return const HomePage(title: 'Test Version 2024 Scouting');
+                  //MaterialPageRoute(builder: (context) {
+                  //return const HomePage(title: 'Test Version 2024 Scouting');
                   //}));
                 });
               }
@@ -372,15 +396,42 @@ void resetForm() {
   autoSpeakerMissedCount = 0;
   autoStartingPosition = "Center";
 
-  teleSpeakerMadeCount = 0;
-  teleSpeakerMissedCount = 0;
+  autoL4 = 0;
+  autoL3 = 0;
+  autoL2 = 0;
+  autoL1 = 0;
+  autoCoral = 0;
+  autoMiss = 0;
+  autoNet = 0;
+  autoProcessor = 0;
+  autoAlgaeRemoved = 0;
+  autoLeave = false;
 
-  climbed = false;
+  teleL4 = 0;
+  teleL3 = 0;
+  teleL2 = 0;
+  teleL1 = 0;
+  teleCoral = 0;
+  teleMiss = 0;
+  teleNet = 0;
+  teleProcessor = 0;
+  teleAlgaeRemoved = 0;
+
+  shallowClimb = false;
+  deepClimb = false;
+  park = false;
+
+  totalNet = 0;
+  totalProcessor = 0;
+  totalAlgae = 0;
+  totalCoral = 0;
 
   driverSkillRating = 3;
   intakeSpeedRating = 2;
   cycleSpeedRating = 2;
-  commentText = "";
+  humanPlayerNotes = "No comment :(";
+  commentText = "No comment :(";
+
   imageVisible = false;
   submissionDone = false;
   submissionFail = false;
